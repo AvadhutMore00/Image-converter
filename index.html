@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image converter. Convert JPG, PNG, WEBP, and BMP images instantly.">
+    <title>PixelFlow - Modern Image Converter</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>PixelFlow</span>
+        </div>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle Dark Mode">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Transform Your Images <br> <span class="gradient-text">Instantly & Securely</span></h1>
+            <p class="subtitle">Convert between JPG, PNG, WEBP, and more locally in your browser.</p>
+        </section>
+
+        <!-- Main Converter Card -->
+        <div class="converter-card glass-panel">
+            
+            <!-- Upload Area -->
+            <div id="drop-zone" class="upload-area">
+                <div class="upload-content">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3>Drag & Drop your image here</h3>
+                    <p>or</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">Browse Files</button>
+                    <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg, image/webp, image/bmp" hidden>
+                    <p class="file-info">Supports: JPG, PNG, WEBP, BMP</p>
+                </div>
+            </div>
+
+            <!-- Editor / Preview Area (Hidden by default) -->
+            <div id="editor-area" class="editor-area hidden">
+                <div class="preview-container">
+                    <div class="image-wrapper">
+                        <img id="image-preview" src="" alt="Preview">
+                        <button id="remove-btn" class="icon-btn remove-btn" title="Remove Image">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="file-details">
+                        <span id="file-name">image.jpg</span>
+                        <span id="file-size" class="badge">2.4 MB</span>
+                    </div>
+                </div>
+
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label for="format-select">Convert to</label>
+                        <div class="select-wrapper">
+                            <select id="format-select">
+                                <option value="image/png">PNG</option>
+                                <option value="image/jpeg">JPG</option>
+                                <option value="image/webp">WEBP</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="control-group range-group" id="quality-group">
+                        <div class="range-header">
+                            <label for="quality-slider">Quality</label>
+                            <span id="quality-value">0.9</span>
+                        </div>
+                        <input type="range" id="quality-slider" min="0.1" max="1.0" step="0.1" value="0.9">
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="convert-btn" class="btn btn-gradient">
+                        <span>Convert Now</span>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Area (Hidden by default) -->
+            <div id="result-area" class="result-area hidden">
+                <div class="success-animation">
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+                <h3>Conversion Complete!</h3>
+                <div class="result-stats">
+                    <div class="stat-item">
+                        <span class="label">New Size</span>
+                        <span class="value" id="new-size">1.2 MB</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">Saved</span>
+                        <span class="value highlight" id="saved-percentage">50%</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <a id="download-btn" class="btn btn-primary" download>
+                        Download Image <i class="fa-solid fa-download"></i>
+                    </a>
+                    <button id="reset-btn" class="btn btn-outline">Convert Another</button>
+                </div>
+            </div>
+
+            <!-- Error Message Toast -->
+            <div id="error-toast" class="toast hidden">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span id="error-message">Invalid file type</span>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <section class="info-section">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">1</div>
+                    <h3>Upload</h3>
+                    <p>Drag & drop or select any image file from your device.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">2</div>
+                    <h3>Choose</h3>
+                    <p>Select your desired format and quality settings.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">3</div>
+                    <h3>Convert</h3>
+                    <p>Instant client-side conversion. Safe & secure.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PixelFlow. avadhutmore5776@gmail.com.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
